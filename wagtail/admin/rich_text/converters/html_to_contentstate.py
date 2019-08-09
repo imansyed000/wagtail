@@ -341,7 +341,9 @@ class HtmlToContentStateHandler(HTMLParser):
                 content = content.lstrip()
             elif self.state.leading_whitespace == FORCE_WHITESPACE and not content.startswith(' '):
                 content = ' ' + content
-
+            if content.startswith('<pre>') and content.endswith('</pre>'):
+                # if code is contained in <pre> tag whitespace should be preserved
+                self.state.leading_whitespace = KEEP_WHITESPACE
             if content.endswith(' '):
                 # don't output trailing whitespace yet, because we want to discard it if the end
                 # of the block follows. Instead, we'll set leading_whitespace = force so that
