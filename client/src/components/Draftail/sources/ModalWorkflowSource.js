@@ -30,9 +30,17 @@ export const getChooserConfig = (entityType, entity, selectedText) => {
     };
 
   case EMBED:
+    urlParams = {};
+
+    if (entity) {
+      const data = entity.getData();
+
+      urlParams.url = data.url;
+    }
+
     return {
       url: global.chooserUrls.embedsChooser,
-      urlParams: {},
+      urlParams,
       onload: global.EMBED_CHOOSER_MODAL_ONLOAD_HANDLERS,
     };
 

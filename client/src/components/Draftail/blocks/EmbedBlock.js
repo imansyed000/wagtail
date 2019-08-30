@@ -9,7 +9,7 @@ import MediaBlock from '../blocks/MediaBlock';
  * Editor block to display media and edit content.
  */
 const EmbedBlock = props => {
-  const { entity, onRemoveEntity } = props.blockProps;
+  const { entity, onRemoveEntity, onEditEntity } = props.blockProps;
   const { url, title, thumbnail } = entity.getData();
 
   return (
@@ -26,8 +26,12 @@ const EmbedBlock = props => {
         </a>
       ) : null}
 
-      <button className="button button-secondary no Tooltip__button" onClick={onRemoveEntity}>
+      <button type="button" className="button button-secondary no Tooltip__button" onClick={onRemoveEntity}>
         {STRINGS.DELETE}
+      </button>
+
+      <button type="button" className="button button-secondary no Tooltip__button" onClick={onEditEntity}>
+        Edit
       </button>
     </MediaBlock>
   );
